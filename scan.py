@@ -4,7 +4,7 @@ import requests
 # no slash at the end, and make sure to add http:// or https://
 # e.g: https://example.com
 
-BASE_URL = "https://harlington.org" 
+BASE_URL = "" # ********** ADD BASE URL HERE **********
 
 #functions
 def find_between( s, first, last ):
