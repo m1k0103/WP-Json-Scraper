@@ -4,7 +4,7 @@ import requests
 # no slash at the end, and make sure to add http:// or https://
 # e.g: https://example.com
 
-BASE_URL = "https://harlington.org" # ********** ADD BASE URL HERE **********
+BASE_URL = "" # ********** ADD BASE URL HERE **********
 
 #functions
 def find_between( s, first, last ):
@@ -25,7 +25,7 @@ def checkResponses(urls):
     
 def scrape(base_url):
     #sets some needed variables
-    endpoint = f"{BASE_URL}/wp-json/"
+    endpoint = f"{base_url}/wp-json/"
     scraped_urls = []
     
     #response from website gotten
@@ -42,12 +42,13 @@ def scrape(base_url):
     
     #creates a list of valid urls
     r200 = checkResponses(scraped_urls)
-    print(r200)
     
     #writes them to file
-    with open(f"{BASE_URL.strip("http://").strip("https://")}.txt", "+a") as f:
+    name = base_url.replace("https://", "")
+    name = name.replace("http://", "")
+    with open(f"{name}.txt", "+a") as f:
         for i in range(len(r200)):
             f.write(f"{r200[i]}\n")
-
+    print(f"Program finished. Urls written to {name}.txt")
 
 scrape(BASE_URL)
